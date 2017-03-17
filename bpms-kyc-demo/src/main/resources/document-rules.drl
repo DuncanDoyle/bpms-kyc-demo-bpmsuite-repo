@@ -1,27 +1,24 @@
 
+import org.jbpm.document.Document;
 
-
-
-
+//Marker fact.
+declare PassportOK
+end
 
 rule "Passport Document Check"
 when
-
-
+    Document()
 then
     System.out.println("Passport OK");
+    insertLogical(new PassportOK);
 
 end
 
-
-
-
-
 rule "Documents OK"
 when
-
+    PassportOK()
 then
     System.out.println("Documents OK");
-
+    insert (new DocumentsOK());
 end
     
