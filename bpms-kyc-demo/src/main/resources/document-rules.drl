@@ -3,7 +3,7 @@ import org.jbpm.document.Document;
 import com.redhat.demos.bpms_kyc_demo.DocumentsOK;
 
 //Marker fact.
-declare PassportOK
+declare PassportOK()
 end
 
 rule "Passport Document Check"
