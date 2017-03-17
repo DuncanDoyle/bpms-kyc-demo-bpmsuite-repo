@@ -1,0 +1,27 @@
+
+
+
+
+
+
+rule "Passport Document Check"
+when
+
+
+then
+    System.out.println("Passport OK");
+
+end
+
+
+
+
+
+rule "Documents OK"
+when
+
+then
+    System.out.println("Documents OK");
+
+end
+    
