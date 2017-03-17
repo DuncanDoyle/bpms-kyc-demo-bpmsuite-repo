@@ -6,7 +6,7 @@ declare PassportOK
 end
 
 rule "Passport Document Check"
-ruleflow-group "document-check"
+ruleflow-group "documents-check"
 when
     Document()
 then
@@ -16,7 +16,7 @@ then
 end
 
 rule "Documents OK"
-ruleflow-group "document-check"
+ruleflow-group "documents-check"
 when
     PassportOK()
 then
