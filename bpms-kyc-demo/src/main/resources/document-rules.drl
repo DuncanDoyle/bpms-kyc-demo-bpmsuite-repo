@@ -38,24 +38,23 @@ then
     insertLogical(new DocumentsNotOK($d.getIdentifier(), "passport", "Passport filename does not start with name of customer."));    
 end
 
-/*
+
 rule "Initialize validation message attribute"
 when
     $d: Document(getAttribute("validationMessages") == null)
 then
     $d.addAttribute("validationMessages", new HashSet());
 end
-*/
 
-/*
+
 rule "Set Validation Messages on document"
 when
-    $d: Document(getAttributes("validationMessages") != null)
-    DocumentsNotOK(type == "passport", $m: message)
+    $d: Document($i: identifier, getAttributes("validationMessages") != null)
+    DocumentsNotOK(id == $i, $m: message)
 then
+    System.out.println("Setting validation message on documenr.");
     $d.getAttribute("validationMessages").add($m);
 end
-*/
 
 
 //Run this rule last. Only if there are no DocumentNotOK facts for all our type will we say that our Income Documents are OK.
