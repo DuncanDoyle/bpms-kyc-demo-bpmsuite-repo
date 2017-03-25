@@ -28,6 +28,7 @@ then
 end 
 
 
+//############### Passport validation checks ################
 rule "Passport Document Check - Document starts with surname of customer"
 ruleflow-group "income-documents-check"
 when
@@ -39,6 +40,7 @@ then
 end
 
 
+//############### Setting validation messages on documents. ################
 rule "Initialize validation message attribute"
 when
     $d: Document(getAttribute("validationMessages") == null)
@@ -56,6 +58,9 @@ then
     String messages = $d.getAttribute("validationMessages);
     //$d.setAttribute("validationMessages", messages + " | " + $m );
 end
+
+
+//############### Setting validation messages on documents. ################
 
 
 //Run this rule last. Only if there are no DocumentNotOK facts for all our type will we say that our Income Documents are OK.
