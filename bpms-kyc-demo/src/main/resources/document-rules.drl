@@ -35,7 +35,7 @@ when
     $d:Document(name not str[startsWith] $s)
 then
     System.out.println("Passport not OK. Does not start with name of customer");
-    insertLogical(new DocumentsNotOK("passport", "Passport filename does not start with name of customer."));    
+    insertLogical(new DocumentsNotOK("passport", "Passport filename does not start with name of customer.", null));    
 end
 
 /*
