@@ -41,7 +41,7 @@ end
 
 
 //############### Setting validation messages on documents. ################
-/*
+
 rule "Initialize validation message attribute"
 when
     $d: Document(getAttribute("validationMessages") == null)
@@ -49,7 +49,7 @@ then
     $d.addAttribute("validationMessages", "messages: ");
 end
 
-
+/*
 rule "Set Validation Messages on document"
 when
     $d: Document($i: identifier, getAttribute("validationMessages") != null)
