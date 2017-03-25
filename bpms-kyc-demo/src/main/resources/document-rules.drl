@@ -38,15 +38,12 @@ end
 
 rule "Set Validation Message on Passport"
 when
-    $d: Document();
-    $m: DocumentsNotOK(type == "passport", )
+    $d: Document()
+    DocumentsNotOK(type == "passport", $m: message)
+then
+    //TODO: implement support for multiple messages.
+    $d.addAttribute("validationMessage", $m)
 end
-
-
-
-
-
-
 
 
 //Run this rule last. Only if there are no DocumentNotOK facts for all our type will we say that our Income Documents are OK.
@@ -57,7 +54,7 @@ rule "AllIncomeDocumentsOK"
 ruleflow-group "income-documents-check"
 salience -100
 when
-    DocumentsOK(type == "passport")
+    not(DocumentsNotOK(type == "passport"))
 then
     System.out.println("All income documents OK.");
     insert(new DocumentsOK("income"));
@@ -65,7 +62,6 @@ end
 
 
 //##################### Milestone Document rules #####################
-
 
 rule "Documents OK"
 ruleflow-group "documents-check"
