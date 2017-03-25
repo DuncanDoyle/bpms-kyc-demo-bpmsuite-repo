@@ -37,7 +37,7 @@
 <property name="readonly" value="true"/>
 <property name="isHTML" value="false"/>
 <property name="hideContent" value="false"/>
-<property name="inputBinding" value="htPassport"/>
+<property name="inputBinding" value="htPassport.name"/>
 <property name="fieldClass" value="java.lang.String"/>
 </field>
 <dataHolder inputId="" name="#FF54A7" type="basicType" outId="htPassport" value="org.jbpm.document.Document" id="passport"/>
