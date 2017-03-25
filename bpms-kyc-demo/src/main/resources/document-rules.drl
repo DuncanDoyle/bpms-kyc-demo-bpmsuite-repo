@@ -15,15 +15,23 @@ then
     delete($d);
 end 
 
-rule "Passport Document Check"
+
+rule "Passport Document Check - Document starts with surname of customer"
 ruleflow-group "income-documents-check"
 when
     Customer($s:surname)
-    $d:Document(name str[startsWith] $s)
-then
+    $d:Document()
+    //Conditional named consequence
+    if (name str[startsWith] $s) do [documentOK]
+    else do [documentNotOK]
+then[documentOK]
     System.out.println("Passport OK");
     insertLogical(new DocumentsOK("passport"));
+then[documentNotOK]
+    System.out.println("Passport Not OK");
+    $d.addAttribute("validationMessage", "Document does not start with surname of the customer.");
 end
+
 
 //We can't user insertLogical here, because the RFG node will retract the facts from WM when it's finished.
 //This means that all matches are removed and thus the "DocumentsOK("incomce"))" fact will be removed from WM
