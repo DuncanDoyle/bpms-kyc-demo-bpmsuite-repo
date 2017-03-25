@@ -11,8 +11,8 @@ end
 rule "Passport Document Check"
 ruleflow-group "documents-check"
 when
-    $c: Customer()
-    Document(name str[startsWith] $c.getSurname())
+    Customer($s:surname)
+    Document(name str[startsWith] $s)
 then
     System.out.println("Passport OK");
     insertLogical(new PassportOK());
