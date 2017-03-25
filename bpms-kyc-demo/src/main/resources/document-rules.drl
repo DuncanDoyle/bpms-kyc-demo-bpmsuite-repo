@@ -5,19 +5,14 @@ import com.redhat.demos.bpms_kyc_demo.Customer;
 
 //##################### Income Document rules #####################
 
-//The Passport document is valid when the document name equals the name surname of the Customer
-
-rule "Debug Passport Document Check"
+rule "Clean DocumentsOK income from session."
 ruleflow-group "income-documents-check"
+salience 100
 when
-    Customer($s:surname)
-    $d:Document()
+    $d:DocumentsOK(type == "income")
 then
-    System.out.println("Customer surname: " + $s);
-    System.out.println("Document name: " + $d.getName());
-end
-
-
+    delete($d);
+end 
 
 rule "Passport Document Check"
 ruleflow-group "income-documents-check"
@@ -26,10 +21,12 @@ when
     $d:Document(name str[startsWith] $s)
 then
     System.out.println("Passport OK");
-    insert(new DocumentsOK("passport"));
+    insertLogical(new DocumentsOK("passport"));
 end
 
-
+//We can't user insertLogical here, because the RFG node will retract the facts from WM when it's finished.
+//This means that all matches are removed and thus the "DocumentsOK("incomce"))" fact will be removed from WM
+// as well. This causes the gateway not to work because the gateway checks the presence of a fact in WM.
 rule "AllIncomeDocumentsOK"
 ruleflow-group "income-documents-check"
 when
@@ -38,6 +35,9 @@ then
     System.out.println("All income documents OK.");
     insert(new DocumentsOK("income"));
 end
+
+
+//##################### Milestone Document rules #####################
 
 
 rule "Documents OK"
