@@ -22,7 +22,7 @@ when
     Customer($s:surname)
     $d:Document()
     //Conditional named consequence
-    if (name str[startsWith] $s) break[documentNotOK]
+    if (name == $s) break[documentNotOK]
 then
     System.out.println("Passport OK");
     insertLogical(new DocumentsOK("passport"));
