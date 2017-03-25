@@ -22,7 +22,7 @@ ruleflow-group "income-documents-check"
 salience 100
 lock-on-active
 when
-    $d:Document(type == "income")
+    $d:Document()
 then
     $d.addAttribute("validationMessage", null);
 end 
