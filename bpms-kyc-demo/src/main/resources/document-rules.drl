@@ -7,7 +7,7 @@ import com.redhat.demos.bpms_kyc_demo.Customer;
 
 //The Passport document is valid when the document name equals the name surname of the Customer
 
-rule "Passport Document Check"
+rule "Debug Passport Document Check"
 ruleflow-group "income-documents-check"
 when
     Customer($s:surname)
