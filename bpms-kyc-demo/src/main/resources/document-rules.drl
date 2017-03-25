@@ -2,6 +2,7 @@
 import java.util.HashSet;
 import org.jbpm.document.Document;
 import com.redhat.demos.bpms_kyc_demo.DocumentsOK;
+import com.redhat.demos.bpms_kyc_demo.DocumentsNotOK;
 import com.redhat.demos.bpms_kyc_demo.Customer;
 
 //##################### Income Document rules #####################
