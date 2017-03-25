@@ -28,7 +28,7 @@ end
 rule "Documents OK"
 ruleflow-group "documents-check"
 when
-    DocumentsOK("Passport")
+    DocumentsOK("Income")
 then
     System.out.println("Documents OK");
     insert (new DocumentsOK("KYC"));
