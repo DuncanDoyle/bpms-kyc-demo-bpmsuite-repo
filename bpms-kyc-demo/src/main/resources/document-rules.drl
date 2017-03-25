@@ -8,6 +8,7 @@ import com.redhat.demos.bpms_kyc_demo.Customer;
 rule "Clean DocumentsOK income from session."
 ruleflow-group "income-documents-check"
 salience 100
+lock-on-active
 when
     $d:DocumentsOK(type == "income")
 then
