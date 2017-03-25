@@ -43,7 +43,7 @@ rule "Initialize validation message attribute"
 when
     $d: Document(getAttribute("validationMessages") == null)
 then
-    $d.addAttribute("validationMessages", new HashSet());
+    $d.addAttribute("validationMessages", "messages: ");
 end
 
 
@@ -52,8 +52,9 @@ when
     $d: Document($i: identifier, getAttribute("validationMessages") != null)
     DocumentsNotOK(documentId == $i, $m: message)
 then
-    System.out.println("Setting validation message on documenr.");
-    $d.getAttribute("validationMessages").add($m);
+    System.out.println("Setting validation message on document.");
+    String messages = $d.getAttribute("validationMessages);
+    $d.setAttribute("validationMessages", messages + " | " + $m );
 end
 
 
