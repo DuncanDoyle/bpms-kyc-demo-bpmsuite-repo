@@ -54,7 +54,7 @@ when
 then
     System.out.println("Setting validation message on document.");
     String messages = $d.getAttribute("validationMessages);
-    $d.setAttribute("validationMessages", messages + " | " + $m );
+    //$d.setAttribute("validationMessages", messages + " | " + $m );
 end
 
 
