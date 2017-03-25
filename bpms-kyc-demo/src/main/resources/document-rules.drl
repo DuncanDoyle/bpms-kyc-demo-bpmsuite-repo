@@ -23,6 +23,9 @@ when
     $d:Document(name str[startsWith] $s)
 then
     System.out.println("Passport OK");
+    //Reset validation message
+    $d.addAttribure("validationMessage", null);
+    //Insert marker that passport is OK.
     insertLogical(new DocumentsOK("passport"));
 end
 
