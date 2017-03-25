@@ -9,26 +9,26 @@ public class DocumentsOK implements java.io.Serializable
 
    static final long serialVersionUID = 1L;
 
-   @org.kie.api.definition.type.Label(value = "Docuement Type")
-   private java.lang.String documentType;
+   @org.kie.api.definition.type.Label(value = "Docuement  Type")
+   private java.lang.String type;
 
    public DocumentsOK()
    {
    }
 
-   public java.lang.String getDocumentType()
+   public java.lang.String getType()
    {
-      return this.documentType;
+      return this.type;
    }
 
-   public void setDocumentType(java.lang.String documentType)
+   public void setType(java.lang.String type)
    {
-      this.documentType = documentType;
+      this.type = type;
    }
 
-   public DocumentsOK(java.lang.String documentType)
+   public DocumentsOK(java.lang.String type)
    {
-      this.documentType = documentType;
+      this.type = type;
    }
 
 }
