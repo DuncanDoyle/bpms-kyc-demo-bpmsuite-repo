@@ -24,7 +24,7 @@ lock-on-active
 when
     $d:Document(type == "income")
 then
-    $d.addAttributes("validationMessage", null);
+    $d.addAttribute("validationMessage", null);
 end 
 
 
