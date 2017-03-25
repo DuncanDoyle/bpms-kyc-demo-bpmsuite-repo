@@ -16,19 +16,24 @@ then
 end 
 
 
-rule "Passport Document Check - Document starts with surname of customer"
+rule "[1] Passport Document Check - Document starts with surname of customer"
 ruleflow-group "income-documents-check"
 when
     Customer($s:surname)
-    $d:Document()
-    //Conditional named consequence
-    if (name == $s) break[documentNotOK]
+    $d:Document(name str[startsWith] $s)
 then
     System.out.println("Passport OK");
     insertLogical(new DocumentsOK("passport"));
-then[documentNotOK]
-    System.out.println("Passport Not OK");
-    $d.addAttribute("validationMessage", "Document does not start with surname of the customer.");
+end
+
+rule "[1] Passport Document Check - Document starts with surname of customer - Validation Message"
+ruleflow-group "income-documents-check"
+when
+    Customer($s:surname)
+    $d:Document(name not str[startsWith] $s)
+then
+    System.out.println("Passport OK");
+    $d.addAttribute("validationMessage", "Document name does not start with surname of customer.");
 end
 
 
