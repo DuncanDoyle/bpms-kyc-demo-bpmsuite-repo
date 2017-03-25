@@ -3,7 +3,22 @@ import org.jbpm.document.Document;
 import com.redhat.demos.bpms_kyc_demo.DocumentsOK;
 import com.redhat.demos.bpms_kyc_demo.Customer;
 
+//##################### Income Document rules #####################
+
 //The Passport document is valid when the document name equals the name surname of the Customer
+
+rule "Passport Document Check"
+ruleflow-group "income-documents-check"
+when
+    Customer($s:surname)
+    $d:Document()
+then
+    System.out.println("Customer surname: " + $s);
+    System.out.println("Document name: " + $d.getName());
+end
+
+
+
 rule "Passport Document Check"
 ruleflow-group "income-documents-check"
 when
@@ -22,7 +37,6 @@ when
 then
     insertLogical(new DocumentsOK("income"));
 end
-
 
 
 rule "Documents OK"
