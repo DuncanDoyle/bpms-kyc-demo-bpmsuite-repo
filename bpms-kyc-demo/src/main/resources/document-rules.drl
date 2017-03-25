@@ -50,7 +50,7 @@ end
 rule "Set Validation Messages on document"
 when
     $d: Document($i: identifier, getAttribute("validationMessages") != null)
-    DocumentsNotOK(id == $i, $m: message)
+    DocumentsNotOK(documentId == $i, $m: message)
 then
     System.out.println("Setting validation message on documenr.");
     $d.getAttribute("validationMessages").add($m);
