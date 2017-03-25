@@ -75,7 +75,7 @@ rule "AllIncomeDocumentsOK"
 ruleflow-group "income-documents-check"
 salience -100
 when
-    not(DocumentsNotOK(type == "passport"))
+    not(DocumentsNotOK())
 then
     System.out.println("All income documents OK.");
     insert(new DocumentsOK("income"));
