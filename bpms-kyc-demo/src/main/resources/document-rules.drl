@@ -35,7 +35,7 @@ ruleflow-group "income-documents-check"
 when
     DocumentsOK(type == "passport")
 then
-    System.out.println("")
+    System.out.println("All income documents OK.");
     insert(new DocumentsOK("income"));
 end
 
