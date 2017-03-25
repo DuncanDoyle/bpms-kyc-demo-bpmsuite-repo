@@ -22,8 +22,8 @@ when
     Customer($s:surname)
     $d:Document()
     //Conditional named consequence
-    if (name str[startsWith] $s) do [documentOK]
-    else do [documentNotOK]
+    if (name str[startsWith] $s) do[documentOK]
+    else do[documentNotOK]
 then[documentOK]
     System.out.println("Passport OK");
     insertLogical(new DocumentsOK("passport"));
