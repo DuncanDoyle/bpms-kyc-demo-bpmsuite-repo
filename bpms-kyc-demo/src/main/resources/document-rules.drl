@@ -37,9 +37,9 @@ when
 then
     System.out.println("Passport not OK. Does not start with name of customer");
     DocumentsNotOK docNotOK = new DocumentsNotOK();
-    docNotOK.setDocumentId = $d.getIdentifier;
-    docNotOK.setType = "passport";
-    docNotOK.setMessage = "Passport filename does not start with name of customer.";
+    docNotOK.setDocumentId($d.getIdentifier());
+    docNotOK.setType("passport");
+    docNotOK.setMessage("Passport filename does not start with name of customer.");
     insertLogical(docNotOK);    
 end
 
