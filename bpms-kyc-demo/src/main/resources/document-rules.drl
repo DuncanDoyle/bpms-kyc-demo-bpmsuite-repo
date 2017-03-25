@@ -5,7 +5,7 @@ import com.redhat.demos.bpms_kyc_demo.DocumentsOK;
 import com.redhat.demos.bpms_kyc_demo.DocumentsNotOK;
 import com.redhat.demos.bpms_kyc_demo.Customer;
 
-//##################### Income Document rules #####################
+//##################### Begin: Income Document rules #####################
 
 rule "Clean DocumentsOK income from session."
 ruleflow-group "income-documents-check"
@@ -85,8 +85,11 @@ then
     insert(new DocumentsOK("income"));
 end
 
+//##################### End: Income Document rules #####################
 
-//##################### Milestone Document rules #####################
+
+
+//##################### Begin: Milestone Document rules #####################
 
 rule "Documents OK"
 ruleflow-group "documents-check"
@@ -96,4 +99,6 @@ then
     System.out.println("Documents OK");
     insert (new DocumentsOK("kyc"));
 end
+
+//##################### End: Milestone Document rules #####################
     
