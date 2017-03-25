@@ -43,14 +43,17 @@ end
 //############### Setting validation messages on documents. ################
 
 rule "Initialize validation message attribute"
+ruleflow-group "income-documents-check"
 when
     $d: Document(getAttribute("validationMessages") == null)
 then
+    System.out.println("Initializing validation message on document.");
     $d.addAttribute("validationMessages", "messages: ");
 end
 
 
 rule "Set Validation Messages on document"
+ruleflow-group "income-documents-check"
 when
     $d: Document($i: identifier, getAttribute("validationMessages") != null)
     DocumentsNotOK(documentId == $i, $m: message)
