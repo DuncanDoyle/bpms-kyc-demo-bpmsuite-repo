@@ -12,10 +12,10 @@ public class DocumentsNotOK implements java.io.Serializable
    @org.kie.api.definition.type.Label("Document Type")
    private java.lang.String type;
 
-   @org.kie.api.definition.type.Label("Message")
+   @org.kie.api.definition.type.Label("Validation Message")
    private java.lang.String message;
 
-   @org.kie.api.definition.type.Label(value = "Document ID")
+   @org.kie.api.definition.type.Label("Document ID")
    private java.lang.String documentId;
 
    public DocumentsNotOK()
