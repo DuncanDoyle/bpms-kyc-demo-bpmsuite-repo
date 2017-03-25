@@ -15,36 +15,47 @@ then
     delete($d);
 end 
 
+rule "Reset validation messages on Documents."
+ruleflow-group "income-documents-check"
+salience 100
+lock-on-active
+when
+    $d:Document(type == "income")
+then
+    $d.addAttributes("validationMessage", null);
+end 
+
 
 rule "[1] Passport Document Check - Document starts with surname of customer"
 ruleflow-group "income-documents-check"
 when
     Customer($s:surname)
-    $d:Document(name str[startsWith] $s)
-then
-    System.out.println("Passport OK");
-    //Reset validation message
-    $d.addAttribure("validationMessage", null);
-    //Insert marker that passport is OK.
-    insertLogical(new DocumentsOK("passport"));
-end
-
-rule "[1] Passport Document Check - Document starts with surname of customer - Validation Message"
-ruleflow-group "income-documents-check"
-when
-    Customer($s:surname)
     $d:Document(name not str[startsWith] $s)
 then
-    System.out.println("Passport OK");
-    $d.addAttribute("validationMessage", "Document name does not start with surname of customer.");
+    System.out.println("Passport not OK. Does not start with name of customer");
+    insertLogical(new DocumentsNotOK("passport", "Passport filename does not start with name of customer."));    
+end
+
+rule "Set Validation Message on Passport"
+when
+    $d: Document();
+    $m: DocumentsNotOK(type == "passport", )
 end
 
 
+
+
+
+
+
+
+//Run this rule last. Only if there are no DocumentNotOK facts for all our type will we say that our Income Documents are OK.
 //We can't user insertLogical here, because the RFG node will retract the facts from WM when it's finished.
 //This means that all matches are removed and thus the "DocumentsOK("incomce"))" fact will be removed from WM
 // as well. This causes the gateway not to work because the gateway checks the presence of a fact in WM.
 rule "AllIncomeDocumentsOK"
 ruleflow-group "income-documents-check"
+salience -100
 when
     DocumentsOK(type == "passport")
 then
