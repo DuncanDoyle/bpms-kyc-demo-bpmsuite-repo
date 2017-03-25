@@ -13,7 +13,6 @@ ruleflow-group "documents-check"
 when
     $c: Customer()
     Document(name str[startsWith] customer.surname)
-    
 then
     System.out.println("Passport OK");
     insertLogical(new PassportOK());
