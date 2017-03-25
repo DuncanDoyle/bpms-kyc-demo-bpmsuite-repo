@@ -9,8 +9,11 @@ public class DocumentsNotOK implements java.io.Serializable
 
    static final long serialVersionUID = 1L;
 
-   @org.kie.api.definition.type.Label(value = "Document Type")
+   @org.kie.api.definition.type.Label("Document Type")
    private java.lang.String type;
+
+   @org.kie.api.definition.type.Label(value = "Message")
+   private java.lang.String message;
 
    public DocumentsNotOK()
    {
@@ -26,9 +29,20 @@ public class DocumentsNotOK implements java.io.Serializable
       this.type = type;
    }
 
-   public DocumentsNotOK(java.lang.String type)
+   public java.lang.String getMessage()
+   {
+      return this.message;
+   }
+
+   public void setMessage(java.lang.String message)
+   {
+      this.message = message;
+   }
+
+   public DocumentsNotOK(java.lang.String type, java.lang.String message)
    {
       this.type = type;
+      this.message = message;
    }
 
 }
