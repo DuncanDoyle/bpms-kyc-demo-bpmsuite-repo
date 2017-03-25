@@ -15,8 +15,8 @@ public class DocumentsNotOK implements java.io.Serializable
    @org.kie.api.definition.type.Label("Message")
    private java.lang.String message;
 
-   @org.kie.api.definition.type.Label(value = "Document")
-   private java.lang.String document;
+   @org.kie.api.definition.type.Label(value = "Document ID")
+   private java.lang.String documentId;
 
    public DocumentsNotOK()
    {
@@ -42,22 +42,22 @@ public class DocumentsNotOK implements java.io.Serializable
       this.message = message;
    }
 
-   public java.lang.String getDocument()
+   public java.lang.String getDocumentId()
    {
-      return this.document;
+      return this.documentId;
    }
 
-   public void setDocument(java.lang.String document)
+   public void setDocumentId(java.lang.String documentId)
    {
-      this.document = document;
+      this.documentId = documentId;
    }
 
    public DocumentsNotOK(java.lang.String type, java.lang.String message,
-         java.lang.String document)
+         java.lang.String documentId)
    {
       this.type = type;
       this.message = message;
-      this.document = document;
+      this.documentId = documentId;
    }
 
 }
