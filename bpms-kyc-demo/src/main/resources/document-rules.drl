@@ -11,16 +11,16 @@ when
     $d:Document(name str[startsWith] $s)
 then
     System.out.println("Passport OK");
-    insertLogical(new DocumentsOK("Passport"));
+    insertLogical(new DocumentsOK("passport"));
 end
 
 
 rule "AllIncomeDocumentsOK"
 ruleflow-group "income-documents-check"
 when
-    DocumentsOK("Passport")
+    DocumentsOK(type == "passport")
 then
-    inserLogical(new DocumentsOK("Income"));
+    inserLogical(new DocumentsOK("income"));
 end
 
 
@@ -28,9 +28,9 @@ end
 rule "Documents OK"
 ruleflow-group "documents-check"
 when
-    DocumentsOK("Income")
+    DocumentsOK(type == "income")
 then
     System.out.println("Documents OK");
-    insert (new DocumentsOK("KYC"));
+    insert (new DocumentsOK("kyc"));
 end
     
