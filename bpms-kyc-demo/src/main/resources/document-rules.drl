@@ -11,7 +11,8 @@ when
     $d:Document(name str[startsWith] $s)
 then
     System.out.println("Passport OK");
-    insertLogical(new DocumentsOK("passport"));
+    //insertLogical(new DocumentsOK("passport"));
+    insert(new DocumentsOK("passport"));
 end
 
 
