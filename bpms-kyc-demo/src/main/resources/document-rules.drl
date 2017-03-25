@@ -49,17 +49,17 @@ then
     $d.addAttribute("validationMessages", "messages: ");
 end
 
-/*
+
 rule "Set Validation Messages on document"
 when
     $d: Document($i: identifier, getAttribute("validationMessages") != null)
     DocumentsNotOK(documentId == $i, $m: message)
 then
     System.out.println("Setting validation message on document.");
-    String messages = $d.getAttribute("validationMessages);
+    //String messages = $d.getAttribute("validationMessages);
     //$d.setAttribute("validationMessages", messages + " | " + $m );
 end
-*/
+
 
 //############### Setting validation messages on documents. ################
 
