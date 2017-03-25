@@ -26,7 +26,7 @@ when
     $d:Document(name str[startsWith] $s)
 then
     System.out.println("Passport OK");
-    insertLogical(new DocumentsOK("passport"));
+    insert(new DocumentsOK("passport"));
 end
 
 
@@ -35,7 +35,8 @@ ruleflow-group "income-documents-check"
 when
     DocumentsOK(type == "passport")
 then
-    insertLogical(new DocumentsOK("income"));
+    System.out.println("")
+    insert(new DocumentsOK("income"));
 end
 
 
