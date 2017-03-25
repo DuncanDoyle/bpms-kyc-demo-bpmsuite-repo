@@ -33,7 +33,8 @@ quot;"/>
 <property name="errorMessage" value="quot;caquot;,quot;quot;quot;dequot;,quot;quot;quot;enquot;,quot;quot;quot;esquot;,quot;quot;quot;frquot;,quot;quot;quot;jaquot;,quot;quot;quot;ptquot;,quot;quot;quot;zhquot;,quot;quot;"/>
 <property name="title" value="quot;caquot;,quot;quot;quot;dequot;,quot;quot;quot;enquot;,quot;quot;quot;esquot;,quot;quot;quot;frquot;,quot;quot;quot;jaquot;,quot;quot;quot;ptquot;,quot;quot;quot;zhquot;,quot;quot;"/>
 <property name="readonly" value="true"/>
-<property name="inputBinding" value="htPassport.getAttribute(&quot;validationMessage&quot;)"/>
+<property name="formula" value="htPassport.getAttribute((&quot;validationMessage&quot;);"/>
+<property name="inputBinding" value="htPassport"/>
 <property name="fieldClass" value="java.lang.String"/>
 </field>
 <dataHolder inputId="" name="#FF54A7" type="basicType" outId="htPassport" value="org.jbpm.document.Document" id="passport"/>
