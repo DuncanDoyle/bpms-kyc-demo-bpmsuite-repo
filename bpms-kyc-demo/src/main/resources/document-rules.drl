@@ -6,7 +6,6 @@ import com.redhat.demos.bpms_kyc_demo.DocumentsCheckResponse;
 import com.redhat.demos.bpms_kyc_demo.Customer;
 
 //##################### Begin: Income Document rules #####################
-/*
 rule "Income - Reset validation messages on Documents."
 ruleflow-group "income-documents-check"
 salience 100
@@ -148,6 +147,5 @@ then
     $d.setDocumentsOk(true);    
 end
 
-*/
 //##################### End: Milestone Document rules #####################
     
