@@ -141,9 +141,9 @@ end
 rule "Documents OK"
 ruleflow-group "documents-check"
 when
-    DocumentsCheckResponse(type == "income", isDocumentsOk == true)
-    DocumentsCheckResponse(type == "collateral", isDocumentsOk == true)
-    $d : DocumentsCheckResponse(type == "documents-milestone", isDocumentsOk == false);
+    DocumentsCheckResponse(type == "income", documentsOk == true)
+    DocumentsCheckResponse(type == "collateral", documentsOk == true)
+    $d : DocumentsCheckResponse(type == "documents-milestone", documentsOk == false);
 then
     $d.setDocumentsOk(true);    
 end
