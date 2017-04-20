@@ -7,7 +7,7 @@ import com.redhat.demos.bpms_kyc_demo.Customer;
 
 //##################### Begin: Income Document rules #####################
 
-rule "Reset validation messages on Documents."
+rule "Income - Reset validation messages on Documents."
 ruleflow-group "income-documents-check"
 salience 100
 lock-on-active
@@ -20,7 +20,7 @@ end
 //############### Passport validation checks ################
 
 //User "insertLogical" so the facts we insert will be removed when the input facts of this Rule Task are retracted.
-rule "Passport Document Check - Document starts with surname of customer"
+rule "Income - Passport Document Check - Document starts with surname of customer"
 ruleflow-group "income-documents-check"
 when
     Customer($s:surname)
@@ -38,7 +38,7 @@ end
 //############### Setting validation messages on documents. ################
 
 
-rule "Set Validation Messages on document"
+rule "Income - Set Validation Messages on document"
 ruleflow-group "income-documents-check"
 when
     $d: Document($i: identifier, getAttribute("validationMessages") != null)
@@ -54,7 +54,7 @@ end
 
 
 //Run this rule last. Only if there are no DocumentNotOK facts for all our type will we say that our Income Documents are OK.
-rule "AllIncomeDocumentsOK"
+rule "Income - AllIncomeDocumentsOK"
 ruleflow-group "income-documents-check"
 salience -100
 when
@@ -73,7 +73,7 @@ end
 //##################### Begin: Collateral rules #####################
 
 //Reset any validation messages we have previously set on the Documents.
-rule "Reset validation messages on Documents."
+rule "Collateral - Reset validation messages on Documents."
 ruleflow-group "collateral-check"
 salience 100
 lock-on-active
@@ -87,7 +87,7 @@ end
 //############### Collateral validation checks ################
 
 //User "insertLogical" so the facts we insert will be removed when the input facts of this Rule Task are retracted.
-rule "Passport Document Check - Document starts with surname of customer"
+rule "Collateral - Passport Document Check - Document starts with surname of customer"
 ruleflow-group "collateral-check"
 when
     Customer($s:surname)
@@ -104,7 +104,7 @@ end
 
 //############### Setting validation messages on documents. ################
 
-rule "Set Validation Messages on document"
+rule "Collateral - Set Validation Messages on document"
 ruleflow-group "collateral-check"
 when
     $d: Document($i: identifier, getAttribute("validationMessages") != null)
@@ -120,7 +120,7 @@ end
 
 
 //Run this rule last. Only if there are no DocumentNotOK facts for all our type will we say that our Income Documents are OK.
-rule "AllIncomeDocumentsOK"
+rule "Collateral - AllIncomeDocumentsOK"
 ruleflow-group "collateral-check"
 salience -100
 when
