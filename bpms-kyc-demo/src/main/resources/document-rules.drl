@@ -7,16 +7,6 @@ import com.redhat.demos.bpms_kyc_demo.Customer;
 
 //##################### Begin: Income Document rules #####################
 
-rule "Clean DocumentsOK income from session."
-ruleflow-group "income-documents-check"
-salience 100
-lock-on-active
-when
-    $d:DocumentsOK(type == "income")
-then
-    delete($d);
-end 
-
 rule "Reset validation messages on Documents."
 ruleflow-group "income-documents-check"
 salience 100
@@ -24,11 +14,12 @@ lock-on-active
 when
     $d:Document()
 then
-    $d.addAttribute("validationMessage", null);
+    $d.addAttribute("validationMessage", "messages: ");
 end 
 
-
 //############### Passport validation checks ################
+
+//User "insertLogical" so the facts we insert will be removed when the input facts of this Rule Task are retracted.
 rule "Passport Document Check - Document starts with surname of customer"
 ruleflow-group "income-documents-check"
 when
@@ -45,15 +36,6 @@ end
 
 
 //############### Setting validation messages on documents. ################
-
-rule "Initialize validation message attribute"
-ruleflow-group "income-documents-check"
-when
-    $d: Document(getAttribute("validationMessages") == null)
-then
-    System.out.println("Initializing validation message on document.");
-    $d.addAttribute("validationMessages", "messages: ");
-end
 
 
 rule "Set Validation Messages on document"
@@ -72,20 +54,85 @@ end
 
 
 //Run this rule last. Only if there are no DocumentNotOK facts for all our type will we say that our Income Documents are OK.
-//We can't user insertLogical here, because the RFG node will retract the facts from WM when it's finished.
-//This means that all matches are removed and thus the "DocumentsOK("incomce"))" fact will be removed from WM
-// as well. This causes the gateway not to work because the gateway checks the presence of a fact in WM.
 rule "AllIncomeDocumentsOK"
 ruleflow-group "income-documents-check"
 salience -100
 when
+    $d: DocumentsCheckResponse();
     not(DocumentsNotOK(type == "passport"))
+    
 then
     System.out.println("All income documents OK.");
-    insert(new DocumentsOK("income"));
+    $d.setDocumentsOk(true);
 end
 
 //##################### End: Income Document rules #####################
+
+//##################################################################################################################//
+
+//##################### Begin: Collateral rules #####################
+
+//Reset any validation messages we have previously set on the Documents.
+rule "Reset validation messages on Documents."
+ruleflow-group "collateral-check"
+salience 100
+lock-on-active
+when
+    $d:Document()
+then
+    $d.addAttribute("validationMessage", "messages: ");
+end 
+
+
+//############### Collateral validation checks ################
+
+//User "insertLogical" so the facts we insert will be removed when the input facts of this Rule Task are retracted.
+rule "Passport Document Check - Document starts with surname of customer"
+ruleflow-group "collateral-check"
+when
+    Customer($s:surname)
+    $d:Document(name not str[startsWith] $s)
+then
+    System.out.println("Passport not OK. Does not start with name of customer");
+    DocumentsNotOK docNotOK = new DocumentsNotOK();
+    docNotOK.setDocumentId($d.getIdentifier());
+    docNotOK.setType("collateral");
+    docNotOK.setMessage("Collateral filename does not start with name of customer.");
+    insertLogical(docNotOK);    
+end
+
+
+//############### Setting validation messages on documents. ################
+
+rule "Set Validation Messages on document"
+ruleflow-group "collateral-check"
+when
+    $d: Document($i: identifier, getAttribute("validationMessages") != null)
+    DocumentsNotOK(documentId == $i, $m: message)
+then
+    System.out.println("Setting validation message on document.");
+    String messages = $d.getAttribute("validationMessages");
+    $d.addAttribute("validationMessages", messages + " | " + $m );
+end
+
+
+//############### Setting validation messages on documents. ################
+
+
+//Run this rule last. Only if there are no DocumentNotOK facts for all our type will we say that our Income Documents are OK.
+rule "AllIncomeDocumentsOK"
+ruleflow-group "collateral-check"
+salience -100
+when
+    $d: DocumentsCheckResponse();
+    not(DocumentsNotOK(type == "passport"))
+    
+then
+    System.out.println("All income documents OK.");
+    $d.setDocumentsOk(true);
+end
+
+//##################### End: Collateral rules #####################
 
 
 
