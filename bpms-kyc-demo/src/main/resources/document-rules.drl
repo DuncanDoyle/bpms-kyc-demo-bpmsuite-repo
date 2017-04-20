@@ -138,14 +138,15 @@ end
 
 //##################### Begin: Milestone Document rules #####################
 
+/*
 rule "Documents OK"
 ruleflow-group "documents-check"
 when
-    DocumentsOK(type == "income")
+    DocumentsCheckResponse(type =)
 then
-    System.out.println("Documents OK");
     insert (new DocumentsOK("kyc"));
 end
+*/
 
 //##################### End: Milestone Document rules #####################
     
