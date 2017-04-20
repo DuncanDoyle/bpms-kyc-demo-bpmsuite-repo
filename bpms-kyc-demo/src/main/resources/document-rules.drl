@@ -57,7 +57,7 @@ rule "Income - AllIncomeDocumentsOK"
 ruleflow-group "income-documents-check"
 salience -100
 when
-    $d: DocumentsCheckResponse();
+    $d: DocumentsCheckResponse(type == "income");
     not(DocumentsNotOK(type == "passport"))
     
 then
@@ -123,8 +123,8 @@ rule "Collateral - AllIncomeDocumentsOK"
 ruleflow-group "collateral-check"
 salience -100
 when
-    $d: DocumentsCheckResponse();
-    not(DocumentsNotOK(type == "passport"))
+    $d: DocumentsCheckResponse(type == "collateral");
+    not(DocumentsNotOK(type == "collateral"))
     
 then
     System.out.println("All income documents OK.");
