@@ -1,0 +1,15 @@
+
+<form id="1388876633">
+<property name="name" value="upload-collateral-task-taskform.form"/>
+<property name="displayMode" value="default"/>
+<property name="status" value="0"/>
+<field position="0" name="collateral" type="Document" id="928683948">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;htCollateral (collateral)quot;"/>
+<property name="readonly" value="false"/>
+<property name="inputBinding" value="htCollateral"/>
+<property name="outputBinding" value="htCollateral"/>
+<property name="fieldClass" value="org.jbpm.document.Document"/>
+</field>
+<dataHolder inputId="htCollateral" name="#9BCAFA" type="basicType" outId="htCollateral" value="org.jbpm.document.Document" id="collateral"/>
+</form>
