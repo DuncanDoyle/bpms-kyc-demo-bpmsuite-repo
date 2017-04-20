@@ -12,6 +12,9 @@ public class DocumentsCheckResponse implements java.io.Serializable
    @org.kie.api.definition.type.Label("Documents OK")
    private boolean documentsOk;
 
+   @org.kie.api.definition.type.Label(value = "Type")
+   private java.lang.String type;
+
    public DocumentsCheckResponse()
    {
    }
@@ -26,9 +29,20 @@ public class DocumentsCheckResponse implements java.io.Serializable
       this.documentsOk = documentsOk;
    }
 
-   public DocumentsCheckResponse(boolean documentsOk)
+   public java.lang.String getType()
+   {
+      return this.type;
+   }
+
+   public void setType(java.lang.String type)
+   {
+      this.type = type;
+   }
+
+   public DocumentsCheckResponse(boolean documentsOk, java.lang.String type)
    {
       this.documentsOk = documentsOk;
+      this.type = type;
    }
 
 }
