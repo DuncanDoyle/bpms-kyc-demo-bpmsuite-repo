@@ -2,7 +2,7 @@
 import java.util.HashSet;
 import org.jbpm.document.Document;
 import com.redhat.demos.bpms_kyc_demo.DocumentsNotOK;
-import com.redhat.demos.bpms_kyc_demo.DocumentsCheckResponse;
+import com.redhat.demos.bpms_kyc_demo.DocumentCheckResponse;
 import com.redhat.demos.bpms_kyc_demo.Customer;
 
 //##################### Begin: Income Document rules #####################
