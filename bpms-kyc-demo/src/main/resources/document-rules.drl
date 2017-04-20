@@ -119,7 +119,7 @@ end
 
 
 //Run this rule last. Only if there are no DocumentNotOK facts for all our type will we say that our Income Documents are OK.
-rule "Collateral - AllIncomeDocumentsOK"
+rule "Collateral - AllCollateralDocumentsOK"
 ruleflow-group "collateral-check"
 salience -100
 when
@@ -127,7 +127,7 @@ when
     not(DocumentsNotOK(type == "collateral"))
     
 then
-    System.out.println("All income documents OK.");
+    System.out.println("All collateral documents OK.");
     $d.setDocumentsOk(true);
 end
 
@@ -142,7 +142,7 @@ ruleflow-group "documents-check"
 when
     DocumentsCheckResponse(type == "income", documentsOk == true)
     DocumentsCheckResponse(type == "collateral", documentsOk == true)
-    $d : DocumentsCheckResponse(type == "documents-milestone", documentsOk == false);
+    $d : DocumentsCheckResponse(type == "all-documents", documentsOk == false);
 then
     $d.setDocumentsOk(true);    
 end
