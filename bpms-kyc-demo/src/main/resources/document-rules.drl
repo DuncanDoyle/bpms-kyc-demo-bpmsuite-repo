@@ -138,15 +138,16 @@ end
 
 //##################### Begin: Milestone Document rules #####################
 
-/*
 rule "Documents OK"
 ruleflow-group "documents-check"
 when
-    DocumentsCheckResponse(type =)
+    DocumentsCheckResponse(type == "income", isDocumentsOk == true)
+    DocumentsCheckResponse(type == "collateral", isDocumentsOk == true)
+    $d : DocumentsCheckResponse(type == "documents-milestone", isDocumentsOk == false);
 then
-    insert (new DocumentsOK("kyc"));
+    $d.setDocumentsOk(true);    
 end
-*/
+
 
 //##################### End: Milestone Document rules #####################
     
